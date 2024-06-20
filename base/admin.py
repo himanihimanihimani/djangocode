@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from base.models import ToDo
+
+admin.site.register(ToDo)
