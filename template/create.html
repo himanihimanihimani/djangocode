@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+<h2>Create New Todo</h2>
+<h3>Welcome, {{ request.user }}</h3>
+<a href="{% url 'logout' %}">Logout</a>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Todo</button>
+</form>
+<h3>All Todos</h3>
+<ul>
+    {% for todo_item in todos %}
+    <li>
+        <h4>{{ todo_item.title }}</h4>
+        <p>{{ todo_item.content }}</p>
+        <p>Completed: {{ todo_item.is_completed|yesno:"Yes,No" }}</p>
+        <a href="{% url 'update_todo' todo_item.pk %}" class="btn btn--link">Update</a>
+        <a href="{% url 'delete_todo' todo_item.pk %}" class="btn btn--link">Delete</a>
+    </li>
+    {% empty %}
+    <li>No todos yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

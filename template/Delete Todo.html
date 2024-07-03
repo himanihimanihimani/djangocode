@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+<h2> Delete Todo</h2>
+<p>Are you sure want to delete"{{todo.tittle}}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">confirm delete</button>
+</form>
+<a href="{% url 'create' %"}Cancel</a>
+{% endblock %}

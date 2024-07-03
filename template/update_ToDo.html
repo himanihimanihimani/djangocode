@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h2 xmlns="http://www.w3.org/1999/html">update Todo</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit>update Todo</button>"</button>
+</form>
+<a href="{% url 'create' %}">cancel</a>
+{% endblock %}

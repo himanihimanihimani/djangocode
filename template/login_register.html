@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main class="auth layout">
+
+    {% if page == 'login' %}
+    <h3>Login</h3>
+
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+        <div class="form__group form__group">
+            <label>Email</label>
+            <input id="username" name="email" type="email" placeholder="abc@gmail.com">
+        </div>
+
+        <div class="form__group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="">
+        </div>
+
+        <button class="btn btn--main" type="submit">
+            Login
+        </button>
+    </form>
+    <div class="auth__action">
+        <p>Haven't signed up yet?</p>
+        <a href="{% url 'register' %}" class="btn btn--link">Sign Up</a>
+    </div>
+    {% else %}
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__box-title">
+                <h3>Register</h3>
+            </div>
+        </div>
+        <div class="layout__body">
+            <form class="form" action="" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form__group form__group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <button class="btn btn--main" type="submit">
+                    Register
+                </button>
+            </form>
+            <div class="auth__action">
+                <p>Already signed in?</p>
+                <a href="{% url 'login' %}" class="btn btn--link">Sign In</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+{% endblock %}
